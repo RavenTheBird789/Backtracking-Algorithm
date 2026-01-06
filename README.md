@@ -6,4 +6,4 @@ Prerequisites: Ensure that you have the latest version of python installed in yo
 
 To install, simply type "git clone https://github.com/RavenTheBird789/Backtracking-Algorithm/tree/main" in your command line
 
-To run, simply type "python3 backtrac.py" in your command line
+To run, simply type "python3 backtrac.py" or "python3 shuff_per.py" in your command line
