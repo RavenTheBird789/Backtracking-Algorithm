@@ -1,38 +1,35 @@
-# Shuffling Permutation For Recursive Shuffle (Backtracking)
-import random
-import time
+# Backtracking approach to shuffle numbers until they are in the order [3, 2, 1]
+
+def shuffle_backtracking(nums, results):
+    # Base case: all numbers used
+    if not nums:
+        print(f"Checking: {results}")
+        return results == [3, 2, 1]
+
+    # Try each possible choice
+    for i in range(len(nums)):
+        choice = nums[i]
+
+        # Choose
+        results.append(choice)
+
+        # Explore
+        if shuffle_backtracking(nums[:i] + nums[i+1:], results):
+            return True  # stop when solution is found
+
+        # Un-choose (BACKTRACK)
+        results.pop()
+
+    return False
 
 def shuffle():
-   # Initialize list of numbers and results
-   nums = [1, 2, 3]
-   results = []
+    nums = [1, 2, 3]
+    results = []
 
-   print("Start: ")
-   print(f"Nums: {nums}");
-   print(f"Results: {results}");
-   print("");
+    print("Start:")
+    shuffle_backtracking(nums, results)
 
-   # Shuffling Permutation algorithm to randomly select numbers from nums and add to results
-   print("Organizing numbers...");
-   while nums != []:
-      ran = (random.choice(nums));
-      results.append(ran);
-      for item in results:
-         if item in nums:
-           del nums[nums.index(item)];
-           print(f"Nums: {nums}");
-           print(f"Results: {results}");
-           break;
-   print("Numbers organized!");
-   print("");
-   print("Finish: ")
-   print(f"Nums left: {nums}");
-   print(f"Results: {results}");
-
-   if results != [3, 2, 1]:
-       print("Solution Is Not Reversed, Reshuffling...");
-       time.sleep(2);
-       shuffle();
-   else:
-      print("Successfully Shuffled In Reversed!");
-shuffle();
+    print("\nFinish:")
+    print(f"Results: {results}")
+    
+shuffle()
